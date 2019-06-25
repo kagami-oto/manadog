@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>jQuery Lesson</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!--サイトデザインCSS-->
+  <link href="css/style.css" rel="stylesheet" media="screen">
+
+  <!-- colorbox CSSファイル -->
+  <link href="colorbox/example3/colorbox.css" rel="stylesheet">
+  <!--ナビ固定CSS-->
+  <style>
+    .fixed {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 10000;
+    }
+  </style>
+
+  <!--Google fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+  <!--/ナビ固定CSS-->
+
+  <!--jQuery本体-->
+  <script src="js/jquery-1.8.3.min.js"></script>
+
+  <!-- slick -->
+  <link rel="stylesheet" href="slick/slick.css">
+  <script src="slick/slick.js"></script>
+  <script>
+    $(function () {
+      $('#header-slider').slick({
+        dots: true,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        fade: true,
+        arrows: false,
+        dots: false,
+      });
+
+      $('#facility-slider').slick({
+        dots: true,
+        customPaging: function (slider, i) {
+          var thumbSrc = $(slider.$slides[i]).find('img').attr("src");
+          return '<img src="' + thumbSrc + '">';
+        }
+      });
+
+      var $carousel = $('#slick03'),
+        $carouselThumb = $carousel.clone().attr('id', 'slick03-thumb').insertAfter($carousel);
+      $carousel.slick({
+        fade: true,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        asNavFor: $carouselThumb
+      });
+      $carouselThumb.slick({
+        autoplay: true,
+        autoplaySpeed: 3000,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        centerMode: true,
+        focusOnSelect: true,
+        asNavFor: $carousel
+      });
+    });
+  </script>
+  <!--/slick-->
+
+  <!-- navをスクロール時にトップに固定 実行コード -->
+  <script>
+    $(function () {
+      var nav = $('.fixedBox'),
+        offset = nav.offset();
+      $(window).scroll(function () {
+        if ($(window).scrollTop() > offset.top) {
+          nav.addClass('fixed');
+        } else {
+          nav.removeClass('fixed');
+        }
+      });
+    });
+  </script>
+  <!-- /navをスクロール時にトップに固定 -->
+
+  <!-- colorbox -->
+  <!-- colorbox JSプラグイン -->
+  <script src="colorbox/jquery.colorbox-min.js"></script>
+  <!-- colorbox 実行コード -->
+  <script>
+    $(function () {
+      $(".group01").colorbox({
+        rel: "group01",
+        transition: "fade",
+        speed: 500,
+        opacity: 0.7,
+        maxWidth: "90%",
+        maxHeight: "90%",
+      })
+    });
+  </script>
+  <!-- /colorbox -->
+
+  <!-- ページトップ戻る　実行コード -->
+  <script>
+    $(function () {
+      var pagetop = $('.pagetop');
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+          pagetop.fadeIn();
+        } else {
+          pagetop.fadeOut();
+        }
+      });
+      pagetop.click(function () {
+        $('body, html').animate({ scrollTop: 0 }, 500);
+        return false;
+      });
+    });
+  </script>
+  <!-- /ページトップ戻る -->
+
+</head>
+<!--ナビ-->
+<div id="navi" class="fixedBox">
+  <ul>
+    <li><a href="#">TOP</a></li>
+    <li><a href="#">CONTENT</a></li>
+    <li><a href="#">PRODUCT</a></li>
+    <li><a href="#">ABOUT</a></li>
+  </ul>
+</div>
+<!--/ナビ-->
+
+<body>
+  <div id="wrapper">
+    <!--バックストレッチ-->
+
+    <div id="header-slider">
+      <img src="backstretch/img/inside.jpg" />
+      <!-- <img src="backstretch/img/seaside-h.jpg" /> -->
+      <img src="backstretch/img/Frisbee-h.jpg" />
+      <img src="backstretch/img/shiba-h.jpg" />
+      <img src="backstretch/img/dog1-h.jpg" />
+      <!-- <img src="backstretch/img/chiwawa.jpg" /> -->
+      <img src="backstretch/img/Frisbee-h.jpg" />
+    </div>
+
+    <!--/バックストレッチ-->
+    <!--イントロ-->
+    <div class="intro">
+      <p id="intro_p">
+        落ち着いた店内で、海を見ながら愛犬とおいしい食事をする。
+        <br>そんな夢のような食事ができるのが、ここ「Manadog(マナドッグ)」です。
+        <br>広いドッグランもありますので、どんなサイズのワンちゃんもウェルカム。
+        <br>一度愛するワンちゃんを連れて、ぜひいらしてください。
+      </p>
+      <table id="intro_table">
+        <tr>
+          <td>ADDRESS</td>
+          <td>〒 415-0015<br>静岡県下田市武ガ浜2-12-19</td>
+        <tr>
+          <td>TEL</td>
+          <td>053-582-8678</td>
+        </tr>
+        <tr>
+          <td>MAIL</td>
+          <td>inu.inuinu@inu</td>
+        </tr>
+      </table>
+    </div>
+    <!--/イントロ-->
+
+
+    <!--menu-->
+    <div class="menu">
+      <div id="menu_box">
+        <h1>MENU</h1>
+        <p>どのメニューも人だけでなく
+          <br>ワンちゃんも食べられる
+          <br>こだわりの食材を使用しています</p>
+        <div id="button">
+          <div class="btn_wrap">
+            <a href="#" class="push">Learn More→</a>
+          </div>
+          <!--/btn_wrap-->
+        </div>
+        <!--/button-->
+      </div>
+      <div id="menu_plate">
+        <div id="plate_box">
+          <img src="img/steak-circle.png" alt="">
+          <p>フィレ肉のステーキ</p>
+        </div>
+        <div id="plate_box">
+          <img src="img/grilledchicken-circle.png" alt="">
+          <p>グリルチキン</p>
+        </div>
+        <div id="plate_box">
+          <img src="img/pasta-circle.png" alt="">
+          <p>ズッキーニとささみのパスタ</p>
+        </div>
+        <div id="plate_box">
+          <img src="img/icecream-circle.png" alt="">
+          <p>豆乳アイス</p>
+        </div>
+      </div>
+      <!--end #menu_plate-->
+    </div>
+    <!--end .menu-->
+    <!--/menu-->
+
+
+
+
+    <!--slick slider syncing-->
+    <div class="facility">
+      <h1>Facility</h1>
+      <p>海が見える広いドッグランと、少し暗いゆったりした店内。</p>
+      <p>開放的でゆるやかに流れる時間を愛犬とともに独り占め。</p>
+      <p>犬も人もくつろげる空間をご用意しております。</p>
+    </div>
+    <!--facility end-->
+    <!--
+  <a class="back" href="/tips/jquery-plugin-slick-image-paging.html">← Back to article</a>
+
+  <h2 id="demo01">ページングをイメージに変更 #1</h2>
+-->
+    <div class="slider-wrap">
+      <div id="facility-slider">
+        <div><img src="slick/images/cafe-843293_640-t.jpg" alt="">
+          <p>落ち着いた店内</p>
+        </div>
+        <div><img src="slick/images/house-t.jpg" alt="">
+          <p>外観はアメリカン</p>
+        </div>
+        <div><img src="Slick/images/yard-fixed-t.jpg" alt="">
+          <p>広々ドッグラン</p>
+        </div>
+        <div><img src="slick/images/inside-t.jpg" alt="">
+          <p>海が見えるテラスは圧巻</p>
+        </div>
+        <div><img src="Slick/images/outside-chairs-t.jpg" alt="">
+          <p>お外にも席がございます</p>
+        </div>
+      </div>
+    </div>
+    <!--slider-wrap end-->
+
+    <!--/slick slider syncing-->
+    <!--colorBox-->
+    <div id="colorBox">
+      <ul>
+        <li>
+          <a href="img/suguri-brulee.jpg" class="group01" title="スグリのプリン">
+            <img src="img/suguri-brulee.jpg" width="270" height="203" alt="スグリのプリン">
+          </a>
+        </li>
+        <li>
+          <a href="backstretch/img/shiba.jpg" class="group01" title="manadogの看板犬　まなな">
+            <img src="backstretch/img/shiba.jpg" width="270" height="203" alt="manadogの看板犬　まなな">
+          </a>
+        </li>
+        <li>
+          <a href="img/cream-puff.jpg" class="group01" title="苺のシュークリーム">
+            <img src="img/cream-puff.jpg" width="270" height="203" alt="苺のシュークリーム">
+          </a>
+        </li>
+        <li>
+          <a href="backstretch/img/dog1.jpg" class="group01" title="誰にも邪魔されない愛犬との時間">
+            <img src="backstretch/img/dog1.jpg" width="270" height="203" alt="誰にも邪魔されない愛犬との時間">
+          </a>
+        </li>
+        <li>
+          <a href="backstretch/img/seaside-dog.jpg" class="group01" title="海風が気持ちいい">
+            <img src="backstretch/img/seaside-dog.jpg" width="270" height="203" alt="海風が気持ちいい">
+          </a>
+        </li>
+        <li>
+          <a href="img/fish.jpg" class="group01" title="フライドフィッシュ">
+            <img src="img/fish.jpg" width="270" height="203" alt="フライドフィッシュ">
+          </a>
+        </li>
+        <li>
+          <a href="backstretch/img/Frisbee.jpg" class="group01" title="おもちゃも置いています"><img
+              src="backstretch/img/Frisbee.jpg" width="270" height="203" alt="おもちゃも置いています">
+          </a>
+        <li>
+          <a href="img/meat.jpg" class="group01" title="こだわりの食材"><img src="img/meat.jpg" width="270" height="203"
+              alt="こだわりの食材">
+          </a>
+        </li>
+        <li>
+          <a href="slick/images/yawn.jpg" class="group01" title="ゆったりした時間をすごせる"><img src="slick/images/yawn.jpg"
+              width="270" height="203" alt="ゆったりした時間をすごせる">
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- end#colorbox -->
+    <!--#footer-->
+    <div id="footer">
+      <p>&copy; cafe manadog</p>
+    </div>
+    <!--/#footer-->
+
+    <!--トップページへ戻るボタン-->
+    <p class="pagetop"><a href="#">▲</a></p>
+
+  </div>
+  <!--/#wrapper-->
+
+</body>
+
+</html>
